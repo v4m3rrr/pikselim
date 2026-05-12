@@ -10,7 +10,7 @@ _**pikselim**_ is written using the graphical API **OpenGL 3.3**.
 _**pikselim**_ supports only Linux distributions with the **X11** display server.
 ## License
 
-Copyright (c) 2026 Pikselim Project  
+Copyright (c) 2026  
 Author: v4m3rrr
 
 This project is licensed under the MIT License.  
