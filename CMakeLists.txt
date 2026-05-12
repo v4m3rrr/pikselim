@@ -13,7 +13,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 if(NOT CMAKE_SYSTEM_NAME STREQUAL "Linux")
   message(FATAL_ERROR "The engine only supports linux systems")
 endif()
-message(STATUS "Reconginsed linux system")
+message(STATUS "Recognized linux system")
+
+# If build type not specified and there is not entry in cache default to Debug
+if(NOT CMAKE_BUILD_TYPE)
+  message(FATAL_ERROR 
+    "Build type not specified. Please use presets from CMakePresets.json")
+endif()
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 # Enable LTO/IPO support
 # --------------------------------------------------
@@ -35,12 +42,6 @@ function(enable_ipo target)
 endfunction()
 # --------------------------------------------------
 
-# If build type not specified and there is not entry in cache default to Debug
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type")
-endif()
-message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
-
 # Enable sanitizers
 # --------------------------------------------------
 option(ENABLE_SANITIZERS "Enables ASan/UBSan/LSan" OFF)
@@ -55,6 +56,30 @@ function(enable_sanitizers target)
   endif()
 endfunction()
 # --------------------------------------------------
+
+# Enable docs
+# --------------------------------------------------
+option(BUILD_DOC "Build documentation" ON)
+
+if(BUILD_DOC)
+find_package(Doxygen COMPONENTS doxygen dot)
+  if(DOXYGEN_FOUND)
+    set(DOXYGEN_USE_MDFILE_AS_MAINPAGE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+    set(DOXYGEN_EXTRACT_ALL YES)
+    set(DOXYGEN_FILE_PATTERNS *.cc *.cxx *.cpp *.c *.hh *.hxx *.hpp *.h)
+    set(DOXYGEN_SOURCE_BROWSER YES)
+    doxygen_add_docs(
+      engine-docs
+      ${CMAKE_CURRENT_SOURCE_DIR}/engine/src
+      ${CMAKE_CURRENT_SOURCE_DIR}/engine/include
+      ${CMAKE_CURRENT_SOURCE_DIR}/README.md
+      ALL
+      COMMENT "Building documentation")
+  else()
+    message(WARNING 
+      "Doxygen executable was not found. Documention will not be built")
+  endif()
+endif()
 
 add_subdirectory(engine)
 add_subdirectory(sandbox)
