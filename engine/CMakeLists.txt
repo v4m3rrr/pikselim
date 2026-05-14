@@ -22,3 +22,6 @@ target_link_libraries(pikselim PRIVATE glad::glad)
 
 find_package(glm CONFIG REQUIRED)
 target_link_libraries(pikselim PRIVATE glm::glm)
+
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(pikselim PRIVATE spdlog::spdlog)
