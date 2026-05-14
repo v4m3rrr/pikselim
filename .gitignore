@@ -6,3 +6,6 @@ build/
 *.swp
 
 .ycm_extra_conf.py
+
+run.sh
+lsan.supp

@@ -15,3 +15,10 @@ Author: v4m3rrr
 
 This project is licensed under the MIT License.  
 See the `LICENSE` file in the project root for full details.
+
+## Third-party dependencies
+
+This project uses the following third-party libraries:
+- GLFW (zlib/libpng license)
+
+See THIRD\_PARTY\_LICENSES.txt for full license texts.
