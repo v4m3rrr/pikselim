@@ -2,18 +2,14 @@
   "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 10
+    "minor": 28
   },
   "configurePresets": [
     {
-      "name": "debug",
-      "displayName": "Debug Build",
+      "name": "base",
+      "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "ENABLE_SANITIZERS": "ON",
-        "BUILD_DOC": "OFF",
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
       },
       "environment":{
@@ -22,19 +18,36 @@
       }
     },
     {
+      "name": "debug",
+      "displayName": "Debug Build",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "ENABLE_SANITIZERS": "ON",
+        "BUILD_DOC": "OFF"
+      }
+    },
+    {
       "name": "release",
       "displayName": "Release Build",
-      "generator": "Ninja",
+      "inherits": "base",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "ENABLE_SANITIZERS": "OFF",
-        "BUILD_DOC": "ON",
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      },
-      "environment":{
-        "CC": "clang",
-        "CXX": "clang++"
+        "BUILD_DOC": "ON"
+      }
+    },
+    {
+      "name": "relwithdebinfo",
+      "displayName": "Release with Debug Info Build",
+      "inherits": "base",
+      "binaryDir": "${sourceDir}/build/relwithdebinfo",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "ENABLE_SANITIZERS": "OFF",
+        "BUILD_DOC": "OFF"
       }
     }
   ],
@@ -46,6 +59,10 @@
     {
       "name": "release",
       "configurePreset": "release"
+    },
+    {
+      "name": "relwithdebinfo",
+      "configurePreset": "relwithdebinfo"
     }
   ]
 }
