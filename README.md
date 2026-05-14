@@ -20,5 +20,10 @@ See the `LICENSE` file in the project root for full details.
 
 This project uses the following third-party libraries:
 - GLFW (zlib/libpng license)
+- GLAD (MIT license)
+- GLM (The Happy Bunny license)
+- spdlog (MIT license)
+- fmt (MIT license)
+- Khronos Group OpenGL specifications (Apache 2.0 license)
 
 See THIRD\_PARTY\_LICENSES.txt for full license texts.
