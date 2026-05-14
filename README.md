@@ -4,17 +4,36 @@ _**pikselim**_ is a lightweight graphics engine based on its predecessor [_pikse
 
 It is not intended for production use.
 
-## Grapics API
-_**pikselim**_ is written using the graphical API **OpenGL 3.3**.
-## Platform support
-_**pikselim**_ supports only Linux distributions with the **X11** display server.
+## Build
+
+In order to build this repo you need to follow those steps:
+
+### Build Requirements
+
+- C++ compiler with C++20 support or higher (Clang preferred)
+- CMake (version 3.10 or newer)
+- Git
+- vcpkg
+- OpenGL drivers supporting at least OpenGL 4.6
+
+### How to build it
+
+```bash
+git clone https://github.com/v4m3rrr/pikselim
+cd pikselim
+cmake --preset release
+cmake --build --preset release
+```
+
+For more presets see CMakePresets.json file.
+
 ## License
 
 Copyright (c) 2026  
 Author: v4m3rrr
 
 This project is licensed under the MIT License.  
-See the `LICENSE` file in the project root for full details.
+See the `LICENSE` file for full details.
 
 ## Third-party dependencies
 
