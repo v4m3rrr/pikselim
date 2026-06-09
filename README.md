@@ -11,7 +11,7 @@ In order to build this repo you need to follow those steps:
 ### Build Requirements
 
 - C++ compiler with C++20 support or higher (Clang preferred)
-- CMake (version 3.10 or newer)
+- CMake (version 3.28 or newer)
 - Git
 - vcpkg
 - OpenGL drivers supporting at least OpenGL 4.6
